@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard — PowerFit Gym</title>
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<div class="admin-wrap">
+  <div class="admin-topbar">
+    <div class="topbar-logo">POWERFIT<span>GYM</span> <span style="font-size:.7rem;color:#555;font-family:var(--font-body);font-weight:400;letter-spacing:0">Admin Panel</span></div>
+    <div class="topbar-actions">
+      <a href="../index.html" target="_blank" class="btn-view">Lihat Website ↗</a>
+      <button class="btn-logout" onclick="handleLogout()">Logout</button>
+    </div>
+  </div>
+  <div class="admin-sidebar">
+    <div class="sidebar-section">Menu</div>
+    <div class="sidebar-item active" data-panel="dashboard" onclick="switchPanel('dashboard')">
+      <svg class="sidebar-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard
+    </div>
+    <div class="sidebar-item" data-panel="profil" onclick="switchPanel('profil');loadProfilEditor()">
+      <svg class="sidebar-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Profil Gym
+    </div>
+    <div class="sidebar-item" data-panel="paket" onclick="switchPanel('paket');loadPaketEditor()">
+      <svg class="sidebar-icon" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Paket Member
+    </div>
+    <div class="sidebar-item" data-panel="galeri" onclick="switchPanel('galeri');loadGaleriEditor()">
+      <svg class="sidebar-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>Galeri
+    </div>
+    <div class="sidebar-item" data-panel="member" onclick="switchPanel('member');loadMemberPanel()">
+      <svg class="sidebar-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Data Member
+    </div>
+    <div class="sidebar-item" data-panel="pesan" onclick="switchPanel('pesan');loadPesan()">
+      <svg class="sidebar-icon" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Pesan Masuk
+    </div>
+    <div class="sidebar-section" style="margin-top:12px">Pengaturan</div>
+    <div class="sidebar-item" data-panel="akun" onclick="switchPanel('akun')">
+      <svg class="sidebar-icon" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Akun Admin
+    </div>
+  </div>
+  <div class="admin-content">
+
+    <!-- DASHBOARD -->
+    <div class="editor-panel active" id="panel-dashboard">
+      <div class="editor-title">Dashboard</div>
+      <div class="editor-subtitle">Selamat datang di Admin Panel PowerFit Gym.</div>
+      <div class="dash-cards">
+        <div class="dash-card"><div class="dash-card-num" id="dash-pkg">-</div><div class="dash-card-label">Paket Aktif</div></div>
+        <div class="dash-card"><div class="dash-card-num" id="dash-gal">-</div><div class="dash-card-label">Foto Galeri</div></div>
+        <div class="dash-card"><div class="dash-card-num" id="dash-member">-</div><div class="dash-card-label">Total Member</div></div>
+        <div class="dash-card"><div class="dash-card-num" id="dash-aktif">-</div><div class="dash-card-label">Member Aktif</div></div>
+      </div>
+      <div class="dash-links">
+        <div class="dash-link" onclick="switchPanel('profil');loadProfilEditor()"><div class="dash-link-title">Profil Gym</div><div class="dash-link-desc">Edit nama, tagline, sejarah, visi, misi, dan kontak</div></div>
+        <div class="dash-link" onclick="switchPanel('paket');loadPaketEditor()"><div class="dash-link-title">Paket Member</div><div class="dash-link-desc">Kelola paket keanggotaan dan harga</div></div>
+        <div class="dash-link" onclick="switchPanel('galeri');loadGaleriEditor()"><div class="dash-link-title">Galeri Foto</div><div class="dash-link-desc">Upload dan kelola foto fasilitas gym</div></div>
+        <div class="dash-link" onclick="switchPanel('member');loadMemberPanel()"><div class="dash-link-title">Data Member</div><div class="dash-link-desc">Tambah, edit, dan kelola data member gym</div></div>
+        <div class="dash-link" onclick="switchPanel('pesan');loadPesan()"><div class="dash-link-title">Pesan Masuk</div><div class="dash-link-desc">Lihat pesan dari pengunjung website</div></div>
+      </div>
+    </div>
+
+    <!-- PROFIL GYM -->
+    <div class="editor-panel" id="panel-profil">
+      <div class="editor-title">Profil Gym</div>
+      <div class="editor-subtitle">Informasi utama gym yang tampil di seluruh website.</div>
+      <div class="form-section">
+        <div class="form-section-title">Identitas Gym</div>
+        <div class="form-row cols-2"><div class="form-group"><label>Nama Gym</label><input type="text" id="p-name" placeholder="PowerFit Gym"></div><div class="form-group"><label>Tagline</label><input type="text" id="p-tagline" placeholder="Transform Your Body..."></div></div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Konten Tentang</div>
+        <div class="form-row"><div class="form-group"><label>Sejarah Gym</label><textarea id="p-history" style="min-height:90px"></textarea></div></div>
+        <div class="form-row cols-2"><div class="form-group"><label>Visi</label><textarea id="p-vision" style="min-height:80px"></textarea></div><div class="form-group"><label>Misi</label><textarea id="p-mission" style="min-height:80px"></textarea></div></div>
+      </div>
+      <div class="form-section">
+        <div class="form-section-title">Informasi Kontak</div>
+        <div class="form-row"><div class="form-group"><label>Alamat Lengkap</label><input type="text" id="p-address" placeholder="Jl. Sudirman No. 123"></div></div>
+        <div class="form-row cols-3"><div class="form-group"><label>Telepon</label><input type="text" id="p-phone" placeholder="+62 812-3456-7890"></div><div class="form-group"><label>Email</label><input type="email" id="p-email" placeholder="info@gym.com"></div><div class="form-group"><label>WhatsApp (tanpa +)</label><input type="text" id="p-wa" placeholder="628xxxxxxxxxx"></div></div>
+        <div class="form-row cols-2"><div class="form-group"><label>Link Google Maps</label><input type="url" id="p-maps-link" placeholder="https://maps.app.goo.gl/..."></div><div class="form-group"><label>Google Maps Embed URL</label><input type="url" id="p-maps-embed" placeholder="https://www.google.com/maps/embed?pb=..."></div></div>
+      </div>
+      <div class="editor-actions"><button class="btn-save" onclick="saveProfil()">Simpan Profil</button></div>
+    </div>
+
+    <!-- PAKET -->
+    <div class="editor-panel" id="panel-paket">
+      <div class="editor-title">Kelola Paket Member</div>
+      <div class="editor-subtitle">Tambah, edit, dan hapus paket keanggotaan.</div>
+      <div class="form-section"><div id="paketList"></div><button class="btn-add" onclick="addPaket()">+ Tambah Paket</button></div>
+      <div class="editor-actions"><button class="btn-save" onclick="savePaket()">Simpan Semua Paket</button></div>
+    </div>
+
+    <!-- GALERI -->
+    <div class="editor-panel" id="panel-galeri">
+      <div class="editor-title">Kelola Galeri Foto</div>
+      <div class="editor-subtitle">Kelola foto fasilitas gym. Gunakan path relatif (img/nama.jpg) atau URL.</div>
+      <div class="form-section"><div id="galeriList" class="gallery-editor-grid"></div><button class="btn-add" onclick="addGaleri()">+ Tambah Foto</button></div>
+      <div class="editor-actions"><button class="btn-save" onclick="saveGaleri()">Simpan Galeri</button></div>
+    </div>
+
+    <!-- MEMBER -->
+    <div class="editor-panel" id="panel-member">
+      <div class="editor-title">Data Member</div>
+      <div class="editor-subtitle">Kelola data member gym — tambah, edit, dan pantau status keanggotaan.</div>
+      <div class="member-toolbar">
+        <div class="member-search-wrap">
+          <input type="text" id="memberSearch" placeholder="Cari nama atau email..." oninput="renderMemberTable()">
+        </div>
+        <div class="member-filter-wrap">
+          <select id="memberStatusFilter" onchange="renderMemberTable()">
+            <option value="">Semua Status</option>
+            <option value="active">Aktif</option>
+            <option value="expired">Kadaluarsa</option>
+            <option value="suspended">Ditangguhkan</option>
+          </select>
+        </div>
+        <button class="btn-add" onclick="showMemberForm()">+ Tambah Member</button>
+      </div>
+      <div class="member-form-wrap" id="memberFormWrap" style="display:none">
+        <div class="member-form-card">
+          <div class="member-form-title" id="memberFormTitle">Tambah Member Baru</div>
+          <div class="form-row cols-2">
+            <div class="form-group"><label>Nama Lengkap</label><input type="text" id="mf-name" placeholder="Nama member"></div>
+            <div class="form-group"><label>No. HP / WhatsApp</label><input type="text" id="mf-phone" placeholder="081234567890"></div>
+          </div>
+          <div class="form-row cols-2">
+            <div class="form-group"><label>Email</label><input type="email" id="mf-email" placeholder="email@example.com"></div>
+            <div class="form-group"><label>Paket</label>
+              <select id="mf-package"></select>
+            </div>
+          </div>
+          <div class="form-row cols-2">
+            <div class="form-group"><label>Tanggal Mulai</label><input type="date" id="mf-start"></div>
+            <div class="form-group"><label>Tanggal Berakhir</label><input type="date" id="mf-end"></div>
+          </div>
+          <div class="form-row cols-2">
+            <div class="form-group"><label>Status</label>
+              <select id="mf-status">
+                <option value="active">Aktif</option>
+                <option value="expired">Kadaluarsa</option>
+                <option value="suspended">Ditangguhkan</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Catatan</label><input type="text" id="mf-notes" placeholder="Opsional"></div>
+          </div>
+          <input type="hidden" id="mf-id">
+          <div class="member-form-actions">
+            <button class="btn-save" onclick="saveMember()">Simpan</button>
+            <button class="btn-reset" onclick="hideMemberForm()">Batal</button>
+          </div>
+        </div>
+      </div>
+      <div class="member-table-wrap">
+        <table class="member-table" id="memberTable">
+          <thead>
+            <tr>
+              <th>Nama</th><th>Email</th><th>No. HP</th>
+              <th>Paket</th><th>Mulai</th><th>Berakhir</th>
+              <th>Status</th><th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="memberTableBody"></tbody>
+        </table>
+        <div id="memberEmpty" class="member-empty" style="display:none">Belum ada data member.</div>
+      </div>
+    </div>
+
+    <!-- PESAN MASUK -->
+    <div class="editor-panel" id="panel-pesan">
+      <div class="editor-title">Pesan Masuk</div>
+      <div class="editor-subtitle">Pesan dari pengunjung yang mengisi form kontak.</div>
+      <div class="form-section"><div id="pesanList"></div></div>
+    </div>
+
+    <!-- AKUN -->
+    <div class="editor-panel" id="panel-akun">
+      <div class="editor-title">Pengaturan Akun Admin</div>
+      <div class="editor-subtitle">Ganti username dan password untuk keamanan panel admin.</div>
+      <div class="form-section" style="max-width:480px">
+        <div class="form-section-title">Ganti Kredensial</div>
+        <div class="form-row"><div class="form-group"><label>Username Baru</label><input type="text" id="new-username" placeholder="admin"></div></div>
+        <div class="form-row"><div class="form-group"><label>Password Lama</label><input type="password" id="old-password"></div></div>
+        <div class="form-row"><div class="form-group"><label>Password Baru</label><input type="password" id="new-password"><small>Minimal 6 karakter</small></div></div>
+        <div class="form-row"><div class="form-group"><label>Konfirmasi Password Baru</label><input type="password" id="confirm-password"></div></div>
+        <div class="editor-actions"><button class="btn-save" onclick="changePassword()">Ganti Password</button></div>
+      </div>
+      <div class="form-section" style="max-width:480px;margin-top:20px">
+        <p style="font-size:.82rem;color:#666;line-height:1.7">Default login: <strong style="color:#D0D0D0">admin</strong> / <strong style="color:#D0D0D0">warriors2026</strong></p>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="toastContainer" class="toast-container"></div>
+<script src="admin.js"></script>
+<script>checkAuth();loadDashboard();</script>
+</body>
+</html>
