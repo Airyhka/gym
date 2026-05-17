@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="page-title">PowerFit Gym | Gym & Fitness Center</title>
+<meta name="description" content="Gym & fitness center profesional dengan fasilitas lengkap dan paket terjangkau.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="header">
+  <div class="container header-inner">
+    <a href="#hero" class="logo" id="nav-logo"><img src="img/logo.jpg" alt="Warriors Gym" class="logo-img">WARRIORS<span>GYM</span></a>
+    <nav><ul class="nav-links">
+      <li><a href="#tentang" data-section="tentang">Tentang</a></li>
+      <li><a href="#paket" data-section="paket">Paket</a></li>
+      <li><a href="#galeri" data-section="galeri">Galeri</a></li>
+      <li><a href="#kontak" data-section="kontak">Kontak</a></li>
+    </ul></nav>
+    <a id="header-cta" href="#kontak" class="btn-header-cta">Daftar Sekarang</a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#tentang" class="mobile-nav-link">Tentang</a>
+  <a href="#paket" class="mobile-nav-link">Paket</a>
+  <a href="#galeri" class="mobile-nav-link">Galeri</a>
+  <a href="#kontak" class="mobile-nav-link">Kontak</a>
+  <a href="#kontak" class="btn btn-primary" style="text-align:center;margin-top:8px">Daftar Sekarang</a>
+</nav>
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <span class="hero-vertical-text">GYM & FITNESS CENTER</span>
+  <div class="container hero-content">
+    <div class="hero-eyebrow"><span class="eyebrow-line"></span><span id="hero-eyebrow-text">GYM & FITNESS CENTER</span></div>
+    <h1 class="hero-title">
+      <span class="ht-small" id="hero-ht-small">TRANSFORM.</span>
+      <span class="ht-large" id="hero-ht-large">JADILAH</span>
+      <span class="ht-accent" id="hero-ht-accent">LEBIH KUAT.</span>
+    </h1>
+    <p class="hero-tagline" id="hero-tagline">Transform Your Body, Transform Your Life</p>
+    <div class="hero-ctas">
+      <a id="hero-cta-primary" href="#kontak" class="btn-hero-primary">Daftar Member <span class="btn-arrow">&#8594;</span></a>
+      <a id="hero-cta-wa" href="#" class="btn-hero-secondary" target="_blank">Hubungi via WhatsApp</a>
+    </div>
+  </div>
+  <div class="scroll-indicator-line"><div class="scroll-line-inner"></div><span class="scroll-label">SCROLL</span></div>
+</section>
+<section id="tentang">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="eyebrow">Tentang Kami</div>
+      <h2 class="section-title" id="about-gym-name">Warriors Gym</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <img src="img/about.png" alt="Interior Gym" loading="lazy">
+        <span class="img-label-vertical" id="about-since">WARRIORS GYM</span>
+      </div>
+      <div class="about-content reveal">
+        <div class="about-tabs">
+          <button class="about-tab active" onclick="switchAboutTab('history')">Sejarah</button>
+          <button class="about-tab" onclick="switchAboutTab('vision')">Visi</button>
+          <button class="about-tab" onclick="switchAboutTab('mission')">Misi</button>
+        </div>
+        <div class="about-tab-pane active" id="tab-history"><p id="about-history">PowerFit Gym berdiri sejak 2018.</p></div>
+        <div class="about-tab-pane" id="tab-vision"><p id="about-vision">Menjadi pusat kebugaran pilihan utama di kota.</p></div>
+        <div class="about-tab-pane" id="tab-mission"><p id="about-mission">Memberikan layanan kebugaran profesional yang terjangkau.</p></div>
+        <div class="about-contact-row" id="about-contact-row"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="paket" class="section-light">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow eyebrow-dark">Pilihan Paket</div>
+      <h2 class="section-title dark">Investasi Kesehatanmu</h2>
+      <p class="section-subtitle dark">Tersedia dari harian hingga tahunan, tanpa biaya tersembunyi.</p>
+    </div>
+    <div class="packages-grid" id="packagesGrid"></div>
+  </div>
+</section>
+<section id="galeri">
+  <div class="container">
+    <div class="reveal"><div class="eyebrow">Fasilitas Kami</div><h2 class="section-title">Galeri Gym</h2></div>
+    <div class="gallery-filter reveal" id="galleryFilter"></div>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+<section id="kontak">
+  <div class="container">
+    <div class="reveal"><div class="eyebrow">Hubungi Kami</div><h2 class="section-title">Kontak</h2></div>
+    <div class="kontak-grid">
+      <div class="kontak-form-wrap reveal">
+        <div class="form-card">
+          <h3>Kirim Pesan</h3>
+          <form id="contactForm" onsubmit="submitContact(event)">
+            <div class="form-field"><label>Nama Lengkap</label><input type="text" id="cf-name" required placeholder="Nama kamu"></div>
+            <div class="form-row-2">
+              <div class="form-field"><label>Email</label><input type="email" id="cf-email" required placeholder="email@example.com"></div>
+              <div class="form-field"><label>No. WhatsApp</label><input type="tel" id="cf-phone" placeholder="08xxxxxxxxxx"></div>
+            </div>
+            <div class="form-field"><label>Pesan</label><textarea id="cf-message" required placeholder="Pertanyaan kamu..." style="min-height:120px"></textarea></div>
+            <button type="submit" class="btn-submit">Kirim Pesan &#8594;</button>
+          </form>
+          <div id="contactSuccess" style="display:none" class="contact-success">
+            <div class="success-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <p>Pesan diterima. Kami akan menghubungi kamu secepatnya.</p>
+          </div>
+        </div>
+      </div>
+      <div class="kontak-info-wrap reveal">
+        <div class="kontak-info-card">
+          <h3>Informasi Kontak</h3>
+          <div class="kontak-info-list" id="kontakInfoList"></div>
+          <div class="kontak-map-wrap"><iframe id="mapEmbed" src="" allowfullscreen="" loading="lazy" title="Lokasi Gym"></iframe></div>
+          <a id="wa-cta" href="#" target="_blank" class="btn-wa-kontak">Chat via WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer id="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo" id="footer-logo"><img src="img/logo.jpg" alt="Warriors Gym" class="logo-img">WARRIORS<span>GYM</span></div>
+        <p id="footer-tagline">Gym & fitness center profesional untuk semua kalangan.</p>
+        <div class="social-links">
+          <a id="footer-wa" href="#" target="_blank" class="social-btn" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+          <a id="footer-maps" href="#" target="_blank" class="social-btn" aria-label="Maps">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </a>
+          <a id="footer-email-link" href="#" class="social-btn" aria-label="Email">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-nav-label">Navigasi</p>
+        <div class="footer-links">
+          <a href="#tentang">Tentang</a><a href="#paket">Paket</a>
+          <a href="#galeri">Galeri</a><a href="#testimoni">Testimoni</a>
+          <a href="#kontak">Kontak</a><a href="admin/login.html">Admin</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom" id="footer-bottom">&#169; 2024 PowerFit Gym</div>
+  </div>
+</footer>
+<div class="floating-bar" id="floatingBar">
+  <a id="float-wa" href="#" target="_blank" class="btn btn-wa">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    WhatsApp
+  </a>
+  <a id="float-maps" href="#" target="_blank" class="btn btn-gold-outline">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    Lokasi
+  </a>
+</div>
+<script>
+const defaultData={
+  profil:{gym_name:'Warriors Gym',tagline:'Coba dateng sini, pasti jadi gerak!',
+    history:'Warriors Gym berdiri sejak 2018. Berawal dari garasi kecil, kini jadi tempat latihan favorit ratusan member di kota.',
+    vision:'Gym yang terasa kayak rumah sendiri — nyaman, niat, dan tanpa basa-basi.',
+    mission:'Fasilitasi semua orang untuk bergerak aktif, tanpa intimidasi dan tanpa embel-embel mahal.',
+    address:'Jl. Sudirman No. 123, Jakarta Selatan',phone:'+62 812-3456-7890',
+    email:'info@warriorsgym.com',whatsapp:'6281234567890',
+    maps_embed:'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322571!2d106.8195!3d-6.2088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zBiJT!5e0!3m2!1sid!2sid!4v1',
+    maps_link:'https://maps.google.com'},
+  packages:[
+    {id:1,name:'Paket Harian',duration:'1 Hari',price:50000,description:'Akses gym untuk 1 hari penuh.',benefits:['Akses area utama','Loker gratis'],display_order:1,is_active:true,featured:false},
+    {id:2,name:'Paket Bulanan',duration:'1 Bulan',price:300000,description:'Akses penuh selama 1 bulan termasuk kelas grup.',benefits:['Akses area utama','Kelas grup','Loker gratis'],display_order:2,is_active:true,featured:true},
+    {id:3,name:'Paket Kuartalan',duration:'3 Bulan',price:750000,description:'Hemat 17% dibanding paket bulanan.',benefits:['Akses area utama','Kelas grup','Loker gratis','Analisis komposisi tubuh'],display_order:3,is_active:true,featured:false},
+    {id:4,name:'Paket Tahunan',duration:'12 Bulan',price:2500000,description:'Paket terbaik untuk komitmen jangka panjang.',benefits:['Akses area utama','Semua kelas grup','Loker gratis','Kaos gym gratis'],display_order:4,is_active:true,featured:false}
+  ],
+  galleries:[
+    {id:1,title:'Area Utama',image:'img/gallery1.png',caption:'Ruang latihan utama',category:'Ruang Utama',display_order:1,is_active:true},
+    {id:2,title:'Squat Rack',image:'img/gallery2.png',caption:'Area beban bebas',category:'Ruang Utama',display_order:2,is_active:true},
+    {id:3,title:'Cardio Zone',image:'img/gallery3.png',caption:'Zona kardio & treadmill',category:'Kardio',display_order:3,is_active:true},
+    {id:4,title:'Locker Room',image:'img/gallery4.png',caption:'Ruang ganti bersih',category:'Fasilitas',display_order:4,is_active:true},
+    {id:5,title:'Kamar Mandi',image:'img/gallery5.png',caption:'Fasilitas mandi',category:'Fasilitas',display_order:5,is_active:true}
+  ]
+};
+function load(k){try{const s=localStorage.getItem('wg_'+k);return s?JSON.parse(s):defaultData[k];}catch(e){return defaultData[k];}}
+function fmtPrice(p){return 'Rp '+Number(p).toLocaleString('id-ID');}
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);}});},{threshold:0.1});
+function observe(){document.querySelectorAll('.reveal:not(.visible)').forEach(el=>observer.observe(el));}
+</script>
+<script>
+function switchAboutTab(tab){
+  document.querySelectorAll('.about-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.about-tab-pane').forEach(p=>p.classList.remove('active'));
+  event.target.classList.add('active');
+  const el=document.getElementById('tab-'+tab);if(el)el.classList.add('active');
+}
+function renderProfil(){
+  const d=load('profil');
+  document.title=d.gym_name+' | Gym & Fitness Center';
+  const s=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  const gymParts=d.gym_name.split(' ');
+  const logoHtml=gymParts.slice(0,-1).join(' ')+'<span>'+gymParts.slice(-1)+'</span>';
+  document.getElementById('nav-logo').innerHTML=logoHtml;
+  document.getElementById('footer-logo').innerHTML=logoHtml;
+  s('hero-eyebrow-text','GYM & FITNESS CENTER');
+  s('hero-tagline',d.tagline);s('about-gym-name',d.gym_name);
+  s('about-since',d.gym_name.toUpperCase());s('about-history',d.history);
+  s('about-vision',d.vision);s('about-mission',d.mission);
+  s('footer-tagline',d.tagline);s('footer-bottom','\u00a9 2024 '+d.gym_name);
+  const wa=d.whatsapp||'6281234567890';
+  const waUrl='https://wa.me/'+wa+'?text=Halo+'+encodeURIComponent(d.gym_name)+',+saya+mau+tanya+info';
+  ['hero-cta-wa','footer-wa','float-wa','wa-cta'].forEach(id=>{const e=document.getElementById(id);if(e)e.href=waUrl;});
+  if(d.maps_link){['footer-maps','float-maps'].forEach(id=>{const e=document.getElementById(id);if(e)e.href=d.maps_link;});}
+  const mapEl=document.getElementById('mapEmbed');if(mapEl&&d.maps_embed)mapEl.src=d.maps_embed;
+  const footerEmail=document.getElementById('footer-email-link');if(footerEmail&&d.email)footerEmail.href='mailto:'+d.email;
+  const cl=document.getElementById('kontakInfoList');
+  if(cl)cl.innerHTML=`
+    <div class="ki-item"><svg class="ki-svg" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div><strong>Alamat</strong><p>${d.address}</p></div></div>
+    <div class="ki-item"><svg class="ki-svg" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.77A16 16 0 0 0 16 16.91l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 24 17l-.08-.08z"/></svg><div><strong>Telepon</strong><p>${d.phone}</p></div></div>
+    <div class="ki-item"><svg class="ki-svg" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><div><strong>Email</strong><p>${d.email}</p></div></div>
+    <div class="ki-item"><svg class="ki-svg" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><div><strong>WhatsApp</strong><p>+${wa}</p></div></div>`;
+  const cr=document.getElementById('about-contact-row');
+  if(cr)cr.innerHTML=`
+    <div class="acr-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>${d.address}</span></div>
+    <div class="acr-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.5 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.77A16 16 0 0 0 16 16.91l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 24 17l-.08-.08z"/></svg><span>${d.phone}</span></div>
+    <div class="acr-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>${d.email}</span></div>`;
+}
+function renderPackages(){
+  const data=load('packages');const pr=load('profil');const wa=(pr||defaultData.profil).whatsapp||'6281234567890';
+  const grid=document.getElementById('packagesGrid');if(!grid)return;
+  const active=[...data].filter(p=>p.is_active).sort((a,b)=>a.display_order-b.display_order);
+  grid.innerHTML=active.map(p=>`
+    <div class="pkg-card${p.featured?' featured':''} reveal">
+      ${p.featured?'<div class="pkg-badge">Paling Populer</div>':''}
+      <div class="pkg-duration-badge">${p.duration}</div>
+      <div class="pkg-name">${p.name}</div>
+      <div class="pkg-price">${fmtPrice(p.price)}</div>
+      <p class="pkg-desc">${p.description||''}</p>
+      <ul class="pkg-benefits">${(Array.isArray(p.benefits)?p.benefits:[]).map(b=>'<li>'+b+'</li>').join('')}</ul>
+      <a href="https://wa.me/'+wa+'?text=Halo,+saya+mau+daftar+'+encodeURIComponent(p.name)+'" class="pkg-cta" target="_blank">${p.featured?'Daftar Sekarang':'Pilih Paket'}</a>
+    </div>`).join('');
+  grid.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}
+</script>
+<script>
+function renderGallery(cat){
+  const data=load('galleries');
+  const grid=document.getElementById('galleryGrid');
+  const filter=document.getElementById('galleryFilter');
+  if(!grid)return;
+  const active=[...data].filter(g=>g.is_active).sort((a,b)=>a.display_order-b.display_order);
+  const cats=['Semua',...new Set(active.map(g=>g.category).filter(Boolean))];
+  filter.innerHTML=cats.map(c=>`<button class="gal-filter-btn${(!cat&&c==='Semua')||(cat===c)?' active':''}" onclick="renderGallery('${c==='Semua'?'':c}')">${c}</button>`).join('');
+  const shown=cat?active.filter(g=>g.category===cat):active;
+  grid.innerHTML=shown.map(g=>`
+    <div class="gallery-item reveal">
+      <img src="${g.image}" alt="${g.title||g.caption}" loading="lazy">
+      <div class="gallery-caption"><strong>${g.title||''}</strong>${g.caption?'<span>'+g.caption+'</span>':''}</div>
+    </div>`).join('');
+  grid.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}
+function submitContact(e){
+  e.preventDefault();
+  const msg={id:Date.now(),name:document.getElementById('cf-name').value,email:document.getElementById('cf-email').value,phone:document.getElementById('cf-phone').value,message:document.getElementById('cf-message').value,is_read:false,created_at:new Date().toISOString()};
+  const msgs=JSON.parse(localStorage.getItem('wg_messages')||'[]');msgs.push(msg);localStorage.setItem('wg_messages',JSON.stringify(msgs));
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('contactSuccess').style.display='flex';
+}
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{
+  header.classList.toggle('scrolled',window.scrollY>60);
+  document.getElementById('floatingBar').classList.toggle('visible',window.scrollY>500);
+  const sections=['tentang','paket','galeri','kontak'];
+  const sy=window.scrollY+120;
+  sections.forEach(id=>{const sec=document.getElementById(id);const link=document.querySelector('.nav-links a[data-section="'+id+'"]');if(!sec||!link)return;link.classList.toggle('active',sy>=sec.offsetTop&&sy<sec.offsetTop+sec.offsetHeight);});
+},{passive:true});
+const ham=document.getElementById('hamburgerBtn');const mnav=document.getElementById('mobileNav');
+ham.addEventListener('click',()=>{ham.classList.toggle('open');mnav.classList.toggle('open');});
+document.querySelectorAll('.mobile-nav-link').forEach(l=>l.addEventListener('click',()=>{ham.classList.remove('open');mnav.classList.remove('open');}));
+document.addEventListener('DOMContentLoaded',()=>{renderProfil();renderPackages();renderGallery('');observe();});
+</script>
+</body>
+</html>
